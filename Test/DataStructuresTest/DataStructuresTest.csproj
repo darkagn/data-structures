@@ -47,6 +47,7 @@
     <Compile Include="LinkedList\DoubleLinkedNodeTest.cs" />
     <Compile Include="LinkedList\SingleLinkedNodeTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Queues\DequeueTest.cs" />
     <Compile Include="Queues\QueueTest.cs" />
   </ItemGroup>
   <ItemGroup>
