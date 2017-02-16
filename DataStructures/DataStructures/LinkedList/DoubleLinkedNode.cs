@@ -31,6 +31,22 @@ namespace DataStructures.LinkedList
         }
 
         /// <summary>
+        /// Returns the first ancestor node in the list.
+        /// </summary>
+        /// <returns>The header node in the list.</returns>
+        public DoubleLinkedNode<T> Head()
+        {
+            if (IsHeader)
+            {
+                return this;
+            }
+            else
+            {
+                return this.Previous.Head();
+            }
+        }
+
+        /// <summary>
         /// Overrides the parent hook method to ensure that the <paramref name="next"/> node in the list is of type <c>DoubleLinkedNode&lt;T&gt;</c>
         /// </summary>
         /// <param name="next">A pointer to the next node in the list.</param>

@@ -11,7 +11,7 @@ namespace DataStructuresTest.LinkedList
     public class DoubleLinkedNodeTest
     {
         /// <summary>
-        /// Tests the <see cref="DataStructures.LinkedList.DoubleLinkedNode{T}.CreateFromArray(T[])"/> method to ensure that if 
+        /// Tests the <see cref="DoubleLinkedNode{T}.CreateFromArray(T[])"/> method to ensure that if 
         /// an array is passed to this function that is not yet instantiated it will throw an exception.
         /// </summary>
         [Test]
@@ -22,7 +22,7 @@ namespace DataStructuresTest.LinkedList
         }
 
         /// <summary>
-        /// Tests the <see cref="DataStructures.LinkedList.DoubleLinkedNode{T}.CreateFromArray(T[])"/> method to ensure that if 
+        /// Tests the <see cref="DoubleLinkedNode{T}.CreateFromArray(T[])"/> method to ensure that if 
         /// an array with length 0 is passed to this function it will return a <c>null</c> result.
         /// </summary>
         [Test]
@@ -34,7 +34,7 @@ namespace DataStructuresTest.LinkedList
         }
 
         /// <summary>
-        /// Tests the <see cref="DataStructures.LinkedList.DoubleLinkedNode{T}.CreateFromArray(T[])"/> method to ensure that if 
+        /// Tests the <see cref="DoubleLinkedNode{T}.CreateFromArray(T[])"/> method to ensure that if 
         /// an array is passed to this function it will return a list with the same length as the array.
         /// </summary>
         [Test]
@@ -46,8 +46,8 @@ namespace DataStructuresTest.LinkedList
         }
 
         /// <summary>
-        /// Tests that the <see cref="DataStructures.LinkedList.DoubleLinkedNode{T}.IsHeader" /> property is true when the
-        /// <see cref="DataStructures.LinkedList.DoubleLinkedNode{T}.Previous"/> property is <c>null</c>.
+        /// Tests that the <see cref="DoubleLinkedNode{T}.IsHeader" /> property is true when the
+        /// <see cref="DoubleLinkedNode{T}.Previous"/> property is <c>null</c>.
         /// </summary>
         [Test]
         public void IsHeaderShouldBeTrueIfPreviousIsNull()
@@ -58,8 +58,8 @@ namespace DataStructuresTest.LinkedList
         }
 
         /// <summary>
-        /// Tests that the <see cref="DataStructures.LinkedList.DoubleLinkedNode{T}.IsHeader" /> property is false when the
-        /// <see cref="DataStructures.LinkedList.DoubleLinkedNode{T}.Previous"/> property is not <c>null</c>.
+        /// Tests that the <see cref="DoubleLinkedNode{T}.IsHeader" /> property is false when the
+        /// <see cref="DoubleLinkedNode{T}.Previous"/> property is not <c>null</c>.
         /// </summary>
         [Test]
         public void IsHeaderShouldBeFalseIfPreviousIsNotNull()
@@ -137,6 +137,20 @@ namespace DataStructuresTest.LinkedList
             Assert.IsFalse(actual.IsHeader, "IsHeader");
             Assert.IsTrue(actual.IsLast, "IsLast");
             Assert.AreEqual(1, DoubleLinkedNode<int>.Length(actual), "Length");
+        }
+
+        /// <summary>
+        /// Tests that the <see cref="DoubleLinkedNode{T}.Head"/> method finds the first node in the list.
+        /// </summary>
+        [Test]
+        public void HeadShouldReturnFirstNode()
+        {
+            int[] array = new int[] { 12, 15, -61, 0, 5 };
+            var actual = DoubleLinkedNode<int>.CreateFromArray(array);
+            var first = actual.Head();
+            Assert.IsNotNull(first, "Head should not be null");
+            Assert.IsTrue(first.IsHeader, "IsHeader should be true for last node");
+            Assert.AreEqual(12, first.Value, "Value should be equal to first array value");
         }
     }
 }

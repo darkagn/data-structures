@@ -53,6 +53,22 @@ namespace DataStructures.LinkedList
         }
 
         /// <summary>
+        /// Returns the last descendant node in the list.
+        /// </summary>
+        /// <returns>The tail node in the list.</returns>
+        public SingleLinkedNode<T> Last()
+        {
+            if (IsLast)
+            {
+                return this;
+            }
+            else
+            {
+                return this.Next.Last();
+            }
+        }
+
+        /// <summary>
         /// Hook method to provide a way to set the <paramref name="next"/> node in the list.
         /// </summary>
         /// <param name="next">A pointer to the next node in the list.</param>
