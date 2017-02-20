@@ -98,9 +98,17 @@ namespace DataStructures.Trees
 
             if (node != null)
             {
-                output.Add(Tree<T>.Print(node.Left));
+                if (node.Left != null)
+                {
+                    output.Add(Tree<T>.Print(node.Left));
+                }
+
                 output.Add(node.Value.ToString());
-                output.Add(Tree<T>.Print(node.Right));
+
+                if (node.Right != null)
+                {
+                    output.Add(Tree<T>.Print(node.Right));
+                }
             }
 
             return string.Join(", ", output);
