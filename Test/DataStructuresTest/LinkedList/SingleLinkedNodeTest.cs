@@ -99,5 +99,30 @@ namespace DataStructuresTest.LinkedList
             Assert.IsTrue(last.IsLast, "IsLast should be true for last node");
             Assert.AreEqual(5, last.Value, "Value should be equal to final array value");
         }
+
+        /// <summary>
+        /// Tests that the <see cref="SingleLinkedNode{T}.Search(T)"/> function returns null when the supplied value is not found.
+        /// </summary>
+        [Test]
+        public void SearchShouldReturnNullWhenNotFound()
+        {
+            int[] array = new int[] { 12, 15, -61, 0, 5 };
+            var actual = SingleLinkedNode<int>.CreateFromArray(array);
+            Assert.IsNull(actual.Search(38129), "Should return null");
+        }
+
+        /// <summary>
+        /// Tests that the <see cref="SingleLinkedNode{T}.Search(T)"/> function returns node when the supplied value is found.
+        /// </summary>
+        [Test]
+        public void SearchShouldReturnNodeWhenValueFound()
+        {
+            int[] array = new int[] { 12, 15, -61, 0, 5 };
+            var actual = SingleLinkedNode<int>.CreateFromArray(array);
+            var result = actual.Search(15);
+            Assert.IsNotNull(result, "Should not return null");
+            Assert.AreEqual(15, result.Value, "Value");
+            Assert.AreEqual(-61, result.Next.Value, "Next value");
+        }
     }
 }

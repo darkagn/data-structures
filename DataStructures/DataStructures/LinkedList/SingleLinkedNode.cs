@@ -149,6 +149,26 @@ namespace DataStructures.LinkedList
         }
 
         /// <summary>
+        /// Searches the list for the supplied <paramref name="value"/>.
+        /// </summary>
+        /// <remarks>This is an O(n) operation since the size of the list determines how long it will take.</remarks>
+        /// <param name="value">The value to be found.</param>
+        /// <returns>The node containing the supplied <paramref name="value"/> if found; <c>null</c> otherwise.</returns>
+        public SingleLinkedNode<T> Search(T value)
+        {
+            if (Value.Equals(value))
+            {
+                return this;
+            }
+            else if (Next != null)
+            {
+                return Next.Search(value);
+            }
+
+            return null;
+        }
+
+        /// <summary>
         /// Removes all references to other <c>SingleLinkedNode</c> instances to aid garbage collection.
         /// </summary>
         public virtual void Dispose()
