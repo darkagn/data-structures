@@ -18,7 +18,7 @@ namespace DataStructuresTest.Queues
             var queue = new Queue<int>();
             Assert.IsNotNull(queue, "Queue should not be null after construction");
             Assert.AreEqual(0, queue.Count, "Count should be zero for new queue");
-            Assert.IsTrue(queue.IsEmpty, "Count should be considered empty");
+            Assert.IsTrue(queue.IsEmpty, "Queue should be considered empty");
         }
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace DataStructuresTest.Queues
             var queue = new Queue<int>();
             Assert.IsNotNull(queue, "Queue should not be null after construction");
             Assert.AreEqual(0, queue.Count, "Count should be zero for new queue");
-            Assert.IsTrue(queue.IsEmpty, "Count should be considered empty");
+            Assert.IsTrue(queue.IsEmpty, "Stack should be considered empty");
 
             queue.Enqueue(17);
             Assert.AreEqual(1, queue.Count, "Count should be 1 after enqueue");

@@ -49,6 +49,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Queues\DequeueTest.cs" />
     <Compile Include="Queues\QueueTest.cs" />
+    <Compile Include="Stacks\StackTest.cs" />
+    <Compile Include="Trees\TreeNodeTest.cs" />
+    <Compile Include="Trees\TreeTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

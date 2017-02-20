@@ -46,6 +46,10 @@
     <Compile Include="Queues\Dequeue.cs" />
     <Compile Include="Queues\Queue.cs" />
     <Compile Include="Queues\QueueUnderflowException.cs" />
+    <Compile Include="Stacks\Stack.cs" />
+    <Compile Include="Stacks\StackUnderflowException.cs" />
+    <Compile Include="Trees\Tree.cs" />
+    <Compile Include="Trees\TreeNode.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
