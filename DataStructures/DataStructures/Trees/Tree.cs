@@ -49,7 +49,7 @@ namespace DataStructures.Trees
         /// </summary>
         /// <param name="node">The root of the subtree being queried.</param>
         /// <returns>The size of the subtree.</returns>
-        private static int Size(TreeNode<T> node)
+        protected static int Size(TreeNode<T> node)
         {
             if (node == null)
             {
@@ -80,34 +80,46 @@ namespace DataStructures.Trees
 
         /// <summary>
         /// Returns a string representation of the entire tree.
+        /// The string representation is a depth first traversal of the tree,
+        /// output as a comma-separated list.
         /// </summary>
+        /// <example>
+        /// Consider the following tree:
+        ///                         42
+        ///                        /  \
+        ///                       90  -2
+        ///                      /  \ / \
+        ///                     1   0 6  9
+        ///                    /
+        ///                   17
+        /// A call to <c>ToString()</c> on this tree will result in the following
+        /// string being returned to the caller:
+        /// <c>42, 90, 1, 17, 6, -2, 0, 9</c>.
+        /// </example>
         /// <returns>A string representation of the instance.</returns>
         public override string ToString()
         {
-            return Tree<T>.Print(mRootNode);
-        }
-
-        /// <summary>
-        /// Returns a string representation of the subtree where the supplied <paramref name="node"/> is the root of the subtree.
-        /// </summary>
-        /// <param name="node">The root of the subtree to be parsed.</param>
-        /// <returns>The string representation of the subtree.</returns>
-        private static string Print(TreeNode<T> node)
-        {
             var output = new System.Collections.Generic.List<string>();
 
-            if (node != null)
+            if (mRootNode != null)
             {
-                if (node.Left != null)
-                {
-                    output.Add(Tree<T>.Print(node.Left));
-                }
+                Stack<TreeNode<T>> stack = new Stack<TreeNode<T>>();
+                stack.Push(mRootNode);
 
-                output.Add(node.Value.ToString());
-
-                if (node.Right != null)
+                while (stack.Count > 0)
                 {
-                    output.Add(Tree<T>.Print(node.Right));
+                    var node = stack.Pop();
+                    output.Add(node.Value.ToString());
+
+                    if (node.Right != null)
+                    {
+                        stack.Push(node.Right);
+                    }
+
+                    if (node.Left != null)
+                    {
+                        stack.Push(node.Left);
+                    }
                 }
             }
 
@@ -119,7 +131,7 @@ namespace DataStructures.Trees
         /// </summary>
         /// <param name="node">The root of the subtree to be determined.</param>
         /// <returns>The height of the subtree.</returns>
-        private static int Height(TreeNode<T> node)
+        protected static int Height(TreeNode<T> node)
         {
             if (node == null)
             {
@@ -179,14 +191,14 @@ namespace DataStructures.Trees
                         return node;
                     }
 
-                   if (node.Left != null)
-                    {
-                        stack.Push(node.Left);
-                    }
-
                     if (node.Right != null)
                     {
                         stack.Push(node.Right);
+                    }
+
+                    if (node.Left != null)
+                    {
+                        stack.Push(node.Left);
                     }
                 }
             }
