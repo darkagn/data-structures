@@ -109,7 +109,7 @@ namespace DataStructures.Trees
                 while (stack.Count > 0)
                 {
                     var node = stack.Pop();
-                    output.Add(node.Value.ToString());
+                    output.Add(node.ToString());
 
                     if (node.Right != null)
                     {
