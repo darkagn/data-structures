@@ -42,7 +42,7 @@ namespace DataStructuresTest.Trees
             Assert.IsFalse(tree.IsEmpty, "Tree is not empty");
             Assert.AreEqual(3, tree.Size(), "Tree should have three nodes");
             Assert.AreEqual(1, tree.Height(), "Tree should have height of 1");
-            Assert.AreEqual("-2, 17, 0", tree.ToString(), "Tree should have comma separated list of values");
+            Assert.AreEqual("17, -2, 0", tree.ToString(), "Tree should have comma separated list of values");
         }
 
         /// <summary>

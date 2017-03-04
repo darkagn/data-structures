@@ -86,5 +86,14 @@ namespace DataStructures.Trees
             Right = null;
             Parent = null;
         }
+
+        /// <summary>
+        /// Returns a string representation of the instance.
+        /// </summary>
+        /// <returns>A string representation of the instance.</returns>
+        public override string ToString()
+        {
+            return Value.ToString();
+        }
     }
 }

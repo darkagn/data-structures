@@ -50,6 +50,7 @@
     <Compile Include="Queues\DequeueTest.cs" />
     <Compile Include="Queues\QueueTest.cs" />
     <Compile Include="Stacks\StackTest.cs" />
+    <Compile Include="Trees\BalancedTreeTest.cs" />
     <Compile Include="Trees\TreeNodeTest.cs" />
     <Compile Include="Trees\TreeTest.cs" />
   </ItemGroup>
