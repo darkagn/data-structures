@@ -1,4 +1,4 @@
-﻿using System;
+﻿using DataStructures.Node;
 
 namespace DataStructures.Trees
 {
@@ -6,7 +6,7 @@ namespace DataStructures.Trees
     /// A node represents a data point in the tree.
     /// </summary>
     /// <typeparam name="T">The type of data being held in the node.</typeparam>
-    public class TreeNode<T> : IDisposable
+    public class TreeNode<T> : BaseNode<T>
     {
         /// <summary>
         /// Constructor for the root node of a tree.
@@ -28,15 +28,6 @@ namespace DataStructures.Trees
             Value = value;
             Left = null;
             Right = null;
-        }
-
-        /// <summary>
-        /// Gets/Sets the value being stored by the node.
-        /// </summary>
-        public T Value
-        {
-            get;
-            set;
         }
 
         /// <summary>
@@ -80,20 +71,11 @@ namespace DataStructures.Trees
         /// <summary>
         /// Disposes of the instance.
         /// </summary>
-        public void Dispose()
+        public override void Dispose()
         {
             Left = null;
             Right = null;
             Parent = null;
-        }
-
-        /// <summary>
-        /// Returns a string representation of the instance.
-        /// </summary>
-        /// <returns>A string representation of the instance.</returns>
-        public override string ToString()
-        {
-            return Value.ToString();
         }
     }
 }

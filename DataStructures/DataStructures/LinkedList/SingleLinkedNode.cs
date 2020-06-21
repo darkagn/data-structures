@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using DataStructures.Node;
 
 namespace DataStructures.LinkedList
 {
@@ -7,7 +8,7 @@ namespace DataStructures.LinkedList
     /// A single linked list where each node has a value and a next node property.
     /// </summary>
     /// <typeparam name="T">Indicates the type of data being stored as the value of the node.</typeparam>
-    public class SingleLinkedNode<T> : IDisposable
+    public class SingleLinkedNode<T> : BaseNode<T>
     {
         /// <summary>
         /// A pointer to the next node in the list.
@@ -29,15 +30,6 @@ namespace DataStructures.LinkedList
             {
                 SetNext(value);
             }
-        }
-
-        /// <summary>
-        /// The value of this node.
-        /// </summary>
-        public T Value
-        {
-            get;
-            set;
         }
 
         /// <summary>
@@ -84,7 +76,7 @@ namespace DataStructures.LinkedList
         public override string ToString()
         {
             List<string> output = new List<string>();
-            output.Add(this.Value.ToString());
+            output.Add(base.ToString());
 
             if (!this.IsLast)
             {
@@ -171,7 +163,7 @@ namespace DataStructures.LinkedList
         /// <summary>
         /// Removes all references to other <c>SingleLinkedNode</c> instances to aid garbage collection.
         /// </summary>
-        public virtual void Dispose()
+        public override void Dispose()
         {
             this.Next = null;
         }

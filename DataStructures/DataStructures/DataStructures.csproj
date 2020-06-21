@@ -53,8 +53,12 @@
     <Compile Include="Trees\TreeNode.cs" />
     <Compile Include="Trees\TreeUnderflowException.cs" />
     <Compile Include="LinkedList\UnderflowException.cs" />
+    <Compile Include="Node\BaseNode.cs" />
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Node\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
