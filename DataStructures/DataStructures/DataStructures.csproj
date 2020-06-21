@@ -52,6 +52,7 @@
     <Compile Include="Trees\Tree.cs" />
     <Compile Include="Trees\TreeNode.cs" />
     <Compile Include="Trees\TreeUnderflowException.cs" />
+    <Compile Include="LinkedList\UnderflowException.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
