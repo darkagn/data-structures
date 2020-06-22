@@ -86,5 +86,14 @@ namespace DataStructures.Stacks
 
             return mInnerList.Value;
         }
+
+        /// <summary>
+        /// Returns a string representation of the stack.
+        /// </summary>
+        /// <returns>The string representation of the stack.</returns>
+        public override string ToString()
+        {
+            return mInnerList.ToString();
+        }
     }
 }

@@ -119,6 +119,15 @@ namespace DataStructures.Queues
         }
 
         /// <summary>
+        /// Returns a string representation of the queue.
+        /// </summary>
+        /// <returns>The string representation of the queue.</returns>
+        public override string ToString()
+        {
+            return mInnerList.ToString();
+        }
+
+        /// <summary>
         /// Hook method that creates the details of the node that represents the supplied <paramref name="value"/>.
         /// </summary>
         /// <param name="value">The value to be stored in the queue.</param>
@@ -135,7 +144,7 @@ namespace DataStructures.Queues
         /// <param name="previousNode">The node being set as the new node's previous node.</param>
         protected virtual void SetPrevious(SingleLinkedNode<T> newNode, SingleLinkedNode<T> previousNode)
         {
-            // this implementation uses single liked list, so this method does nothing here
+            // this implementation uses single linked list, so this method does nothing here
         }
     }
 }
