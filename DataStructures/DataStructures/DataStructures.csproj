@@ -54,6 +54,7 @@
     <Compile Include="Trees\TreeUnderflowException.cs" />
     <Compile Include="LinkedList\UnderflowException.cs" />
     <Compile Include="Node\BaseNode.cs" />
+    <Compile Include="LinkedList\SortedLinkedList.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
