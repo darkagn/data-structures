@@ -54,6 +54,7 @@
     <Compile Include="Trees\BalancedTreeTest.cs" />
     <Compile Include="Trees\TreeNodeTest.cs" />
     <Compile Include="Trees\TreeTest.cs" />
+    <Compile Include="LinkedList\SortedLinkedListTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\DataStructures\DataStructures\DataStructures.csproj">
