@@ -65,7 +65,7 @@ namespace DataStructuresTest.LinkedList
         public void IsHeaderShouldBeFalseIfPreviousIsNotNull()
         {
             DoubleLinkedNode<int> node = DoubleLinkedNode<int>.Instance(0, null, null);
-            node = DoubleLinkedNode<int>.Instance(1, node, null);
+            node = DoubleLinkedNode<int>.Instance(1, null, node);
             Assert.IsNotNull(node.Previous, "Previous should not be null");
             Assert.IsFalse(node.IsHeader, "IsHeader should be true when next is not null");
         }
@@ -81,9 +81,9 @@ namespace DataStructuresTest.LinkedList
                 "Passing null as next or previous should be fine - indicates first item being added to the list");
 
             DoubleLinkedNode<int> node = DoubleLinkedNode<int>.Instance(0, null, null);
-            DoubleLinkedNode<int> nextNode = DoubleLinkedNode<int>.Instance(1, node, null);
+            DoubleLinkedNode<int> nextNode = DoubleLinkedNode<int>.Instance(1, null, node);
             node.Next = nextNode;
-            DoubleLinkedNode<int> lastNode = DoubleLinkedNode<int>.Instance(2, nextNode, null);
+            DoubleLinkedNode<int> lastNode = DoubleLinkedNode<int>.Instance(2, null, nextNode);
             nextNode.Next = lastNode;
 
             SingleLinkedNode<int> invalidNode = SingleLinkedNode<int>.Instance(-1, node);

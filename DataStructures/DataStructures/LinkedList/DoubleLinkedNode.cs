@@ -9,6 +9,37 @@ namespace DataStructures.LinkedList
     public class DoubleLinkedNode<T> : SingleLinkedNode<T>, IDisposable
     {
         /// <summary>
+        /// Base constructor.
+        /// </summary>
+        /// <param name="value">Value being represented by this node.</param>
+        protected DoubleLinkedNode(T value)
+            : this(value, null)
+        {
+        }
+
+        /// <summary>
+        /// Constructor specifying the next node in the list.
+        /// </summary>
+        /// <param name="value">Value being represented by this node.</param>
+        /// <param name="next">The next node in the list.</param>
+        protected DoubleLinkedNode(T value, DoubleLinkedNode<T> next)
+            : this(value, next, null)
+        {
+        }
+
+        /// <summary>
+        /// Constructor specifying the next and previous node in the list.
+        /// </summary>
+        /// <param name="value">Value being represented by this node.</param>
+        /// <param name="next">The next node in the list.</param>
+        /// <param name="previous">The previous node in the list.</param>
+        protected DoubleLinkedNode(T value, DoubleLinkedNode<T> next, DoubleLinkedNode<T> previous)
+            : base(value, next)
+        {
+            Previous = previous;
+        }
+
+        /// <summary>
         /// A pointer to the previous node in the list.
         /// If this value is <c>null</c>, this indicates that the node is the first one in the list.
         /// </summary>
@@ -55,19 +86,12 @@ namespace DataStructures.LinkedList
         /// and <paramref name="next"/> nodes in the list.
         /// </summary>
         /// <param name="value">The value of the node.</param>
-        /// <param name="previous">A pointer to the previous node in the list.</param>
         /// <param name="next">A pointer to the next node in the list.</param>
+        /// <param name="previous">A pointer to the previous node in the list.</param>
         /// <returns>An instance of the node.</returns>
-        public static DoubleLinkedNode<T> Instance(T value, DoubleLinkedNode<T> previous, DoubleLinkedNode<T> next)
+        public static DoubleLinkedNode<T> Instance(T value, DoubleLinkedNode<T> next, DoubleLinkedNode<T> previous)
         {
-            DoubleLinkedNode<T> node = new DoubleLinkedNode<T>
-            {
-                Value = value,
-                Previous = previous,
-                Next = next
-            };
-
-            return node;
+            return new DoubleLinkedNode<T>(value, next, previous);
         }
 
         /// <summary>
@@ -88,7 +112,7 @@ namespace DataStructures.LinkedList
 
             for (int i = 0; i < array.Length; i++)
             {
-                DoubleLinkedNode<T> node = Instance(array[i], previous, null);
+                DoubleLinkedNode<T> node = Instance(array[i], null, previous);
                 if (previous == null)
                 {
                     returnVal = node;

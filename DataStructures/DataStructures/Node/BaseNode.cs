@@ -7,8 +7,17 @@ namespace DataStructures.Node
     /// as a point in the data structure that contains a value.
     /// </summary>
     /// <typeparam name="T">Indicates the type of data being stored as the value of the node.</typeparam>
-    public class BaseNode<T>: IDisposable
+    public class BaseNode<T> : IDisposable
     {
+        /// <summary>
+        /// Base constructor.
+        /// </summary>
+        /// <param name="value">Value being represented by this node.</param>
+        public BaseNode(T value)
+        {
+            Value = value;
+        }
+
         /// <summary>
         /// The value of this node.
         /// </summary>
