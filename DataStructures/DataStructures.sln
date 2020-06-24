@@ -50,6 +50,6 @@ Global
 		$0.XmlFormattingPolicy = $8
 		$8.scope = application/xml
 		$0.VersionControlPolicy = $9
-		version = 1.0.0
+		version = 1.0.1
 	EndGlobalSection
 EndGlobal
