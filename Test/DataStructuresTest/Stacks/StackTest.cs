@@ -4,7 +4,7 @@ using NUnit.Framework;
 namespace DataStructuresTest.Stacks
 {
     /// <summary>
-    /// Unit test fixture for the <see cref="DataStructures.Stacks.Stack{T}"/> class.
+    /// Unit test fixture for the <see cref="Stack{T}"/> class.
     /// </summary>
     [TestFixture]
     public class StackTest
@@ -15,7 +15,7 @@ namespace DataStructuresTest.Stacks
         [Test]
         public void NewStackShouldHaveZeroCountAndBeEmpty()
         {
-            var stack = new Stack<int>();
+            Stack<int> stack = new Stack<int>();
             Assert.IsNotNull(stack, "Stack should not be null after construction");
             Assert.AreEqual(0, stack.Count, "Count should be zero for new stack");
             Assert.IsTrue(stack.IsEmpty, "Stack should be considered empty");
@@ -27,7 +27,7 @@ namespace DataStructuresTest.Stacks
         [Test]
         public void PushShouldAddOneToCountEachTime()
         {
-            var stack = new Stack<int>();
+            Stack<int> stack = new Stack<int>();
             Assert.IsNotNull(stack, "Stack should not be null after construction");
             Assert.AreEqual(0, stack.Count, "Count should be zero for new stack");
             Assert.IsTrue(stack.IsEmpty, "Stack should be considered empty");
@@ -47,9 +47,9 @@ namespace DataStructuresTest.Stacks
         [Test]
         public void PopOnEmptyStackShouldThrowException()
         {
-            var stack = new Stack<int>();
+            Stack<int> stack = new Stack<int>();
 
-            Assert.Throws(typeof(StackUnderflowException), () => stack.Pop(), "Pop on empty stack should throw exception");
+            _ = Assert.Throws(typeof(StackUnderflowException), () => stack.Pop(), "Pop on empty stack should throw exception");
         }
 
         /// <summary>
@@ -58,7 +58,7 @@ namespace DataStructuresTest.Stacks
         [Test]
         public void PopOnNonEmptyStackShouldReturnLastElementAndDecreaseCountByOne()
         {
-            var stack = new Stack<int>();
+            Stack<int> stack = new Stack<int>();
             stack.Push(17);
             stack.Push(42);
             Assert.AreEqual(2, stack.Count, "Count should be 2 after push");
@@ -81,9 +81,9 @@ namespace DataStructuresTest.Stacks
         [Test]
         public void PeekOnEmptyStackShouldThrowException()
         {
-            var stack = new Stack<int>();
+            Stack<int> stack = new Stack<int>();
 
-            Assert.Throws(typeof(StackUnderflowException), () => stack.Peek(), "Peek on empty queue should throw exception");
+            _ = Assert.Throws(typeof(StackUnderflowException), () => stack.Peek(), "Peek on empty queue should throw exception");
         }
 
         /// <summary>
@@ -92,7 +92,7 @@ namespace DataStructuresTest.Stacks
         [Test]
         public void PeekOnNonEmptyStackShouldReturnLastElementButNotChangeQueue()
         {
-            var stack = new Stack<int>();
+            Stack<int> stack = new Stack<int>();
 
             stack.Push(17);
             int value = stack.Peek();

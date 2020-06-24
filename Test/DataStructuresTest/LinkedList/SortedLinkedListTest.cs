@@ -4,7 +4,7 @@ using NUnit.Framework;
 namespace DataStructuresTest.LinkedList
 {
     /// <summary>
-    /// Unit test fixture for the <see cref="DataStructures.LinkedList.SortedLinkedList{T}"/> class.
+    /// Unit test fixture for the <see cref="SortedLinkedList{T}"/> class.
     /// </summary>
     [TestFixture]
     public class SortedLinkedListTest
@@ -17,7 +17,7 @@ namespace DataStructuresTest.LinkedList
         [Test]
         public void AddShouldIncrementCount()
         {
-            var list = new SortedLinkedList<int>();
+            SortedLinkedList<int> list = new SortedLinkedList<int>();
             Assert.AreEqual(0, list.Count, "New list should have count of 0");
 
             list.Add(1);
@@ -32,7 +32,7 @@ namespace DataStructuresTest.LinkedList
         [Test]
         public void AddToEmptyListShouldNoLongerBeEmpty()
         {
-            var list = new SortedLinkedList<int>();
+            SortedLinkedList<int> list = new SortedLinkedList<int>();
             Assert.IsTrue(list.IsEmpty, "New list should be empty");
 
             list.Add(1);
@@ -45,7 +45,7 @@ namespace DataStructuresTest.LinkedList
         /// </summary>
         public void AddShouldMaintainSortOrder()
         {
-            var list = new SortedLinkedList<int>();
+            SortedLinkedList<int> list = new SortedLinkedList<int>();
             list.Add(1);
             list.Add(7);
             list.Add(34);
@@ -63,7 +63,7 @@ namespace DataStructuresTest.LinkedList
         [Test]
         public void RemoveShouldDecrementCountWhenFound()
         {
-            var list = new SortedLinkedList<int>();
+            SortedLinkedList<int> list = new SortedLinkedList<int>();
             list.Add(1);
 
             Assert.IsTrue(list.Remove(1), "Remove should return true on success");
@@ -78,10 +78,10 @@ namespace DataStructuresTest.LinkedList
         [Test]
         public void RemoveOfSingleItemInListShouldNowBeEmpty()
         {
-            var list = new SortedLinkedList<int>();
+            SortedLinkedList<int> list = new SortedLinkedList<int>();
             list.Add(1);
 
-            list.Remove(1);
+            _ = list.Remove(1);
             Assert.IsTrue(list.IsEmpty, "Remove should update IsEmpty on success");
         }
 
@@ -93,7 +93,7 @@ namespace DataStructuresTest.LinkedList
         [Test]
         public void RemoveShouldNotUpdateCountWhenNotFound()
         {
-            var list = new SortedLinkedList<int>();
+            SortedLinkedList<int> list = new SortedLinkedList<int>();
             list.Add(1);
 
             Assert.IsFalse(list.Remove(2), "Remove should return false on failure");
@@ -106,14 +106,14 @@ namespace DataStructuresTest.LinkedList
         /// </summary>
         public void RemoveShouldMaintainSortOrder()
         {
-            var list = new SortedLinkedList<int>();
+            SortedLinkedList<int> list = new SortedLinkedList<int>();
             list.Add(1);
             list.Add(7);
             list.Add(34);
             list.Add(-1);
             list.Add(9);
 
-            list.Remove(9);
+            _ = list.Remove(9);
 
             Assert.AreEqual("34, 7, 1, -1", list.ToString(), "Sort order should be maintained by adding values");
         }
@@ -126,10 +126,10 @@ namespace DataStructuresTest.LinkedList
         [Test]
         public void SearchShouldReturnNonNullWhenFound()
         {
-            var list = new SortedLinkedList<int>();
+            SortedLinkedList<int> list = new SortedLinkedList<int>();
             list.Add(1);
 
-            var actual = list.Search(1);
+            DoubleLinkedNode<int> actual = list.Search(1);
             Assert.IsNotNull(actual, "Search should return non-null result when value exists in the list");
             Assert.AreEqual(1, actual.Value, "Search should return the correct value when it exists in the list");
         }
@@ -142,10 +142,10 @@ namespace DataStructuresTest.LinkedList
         [Test]
         public void SearchShouldReturnNullWhenNotFound()
         {
-            var list = new SortedLinkedList<int>();
+            SortedLinkedList<int> list = new SortedLinkedList<int>();
             list.Add(1);
 
-            var actual = list.Search(2);
+            DoubleLinkedNode<int> actual = list.Search(2);
             Assert.IsNull(actual, "Search should return null result when value does not exist in the list");
         }
     }

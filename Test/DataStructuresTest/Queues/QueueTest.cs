@@ -4,7 +4,7 @@ using NUnit.Framework;
 namespace DataStructuresTest.Queues
 {
     /// <summary>
-    /// Unit test fixture for the <see cref="DataStructures.Queues.Queue{T}"/> class.
+    /// Unit test fixture for the <see cref="Queue{T}"/> class.
     /// </summary>
     [TestFixture]
     public class QueueTest
@@ -15,7 +15,7 @@ namespace DataStructuresTest.Queues
         [Test]
         public void NewQueueShouldBeEmptyAndHaveZeroCount()
         {
-            var queue = new Queue<int>();
+            Queue<int> queue = new Queue<int>();
             Assert.IsNotNull(queue, "Queue should not be null after construction");
             Assert.AreEqual(0, queue.Count, "Count should be zero for new queue");
             Assert.IsTrue(queue.IsEmpty, "Queue should be considered empty");
@@ -27,7 +27,7 @@ namespace DataStructuresTest.Queues
         [Test]
         public void EnqueueShouldAddOneToCountEachTime()
         {
-            var queue = new Queue<int>();
+            Queue<int> queue = new Queue<int>();
             Assert.IsNotNull(queue, "Queue should not be null after construction");
             Assert.AreEqual(0, queue.Count, "Count should be zero for new queue");
             Assert.IsTrue(queue.IsEmpty, "Stack should be considered empty");
@@ -47,9 +47,9 @@ namespace DataStructuresTest.Queues
         [Test]
         public void DequeueOnEmptyQueueShouldThrowException()
         {
-            var queue = new Queue<int>();
+            Queue<int> queue = new Queue<int>();
 
-            Assert.Throws(typeof(QueueUnderflowException), () => queue.Dequeue(), "Dequeue on empty queue should throw exception");
+            _ = Assert.Throws(typeof(QueueUnderflowException), () => queue.Dequeue(), "Dequeue on empty queue should throw exception");
         }
 
         /// <summary>
@@ -58,7 +58,7 @@ namespace DataStructuresTest.Queues
         [Test]
         public void DequeueOnNonEmptyQueueShouldReturnFirstElementAndDecreaseCountByOne()
         {
-            var queue = new Queue<int>();
+            Queue<int> queue = new Queue<int>();
             queue.Enqueue(17);
             queue.Enqueue(42);
             Assert.AreEqual(2, queue.Count, "Count should be 2 after enqueue");
@@ -81,9 +81,9 @@ namespace DataStructuresTest.Queues
         [Test]
         public void PeekOnEmptyQueueShouldThrowException()
         {
-            var queue = new Queue<int>();
+            Queue<int> queue = new Queue<int>();
 
-            Assert.Throws(typeof(QueueUnderflowException), () => queue.Peek(), "Peek on empty queue should throw exception");
+            _ = Assert.Throws(typeof(QueueUnderflowException), () => queue.Peek(), "Peek on empty queue should throw exception");
         }
 
         /// <summary>
@@ -92,7 +92,7 @@ namespace DataStructuresTest.Queues
         [Test]
         public void PeekOnNonEmptyQueueShouldReturnFirstElementButNotChangeQueue()
         {
-            var queue = new Queue<int>();
+            Queue<int> queue = new Queue<int>();
 
             queue.Enqueue(17);
             int value = queue.Peek();

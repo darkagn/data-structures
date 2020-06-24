@@ -15,7 +15,7 @@ namespace DataStructuresTest.Queues
         [Test]
         public void EnqueueFirstShouldInsertAtBeginningOfQueue()
         {
-            var queue = new Dequeue<int>();
+            Dequeue<int> queue = new Dequeue<int>();
             Assert.IsNotNull(queue, "Queue should not be null after construction");
             Assert.AreEqual(0, queue.Count, "Count should be zero for new queue");
             Assert.IsTrue(queue.IsEmpty, "Count should be considered empty");
@@ -37,9 +37,9 @@ namespace DataStructuresTest.Queues
         [Test]
         public void DequeueLastOnEmptyQueueShouldThrowException()
         {
-            var queue = new Dequeue<int>();
+            Dequeue<int> queue = new Dequeue<int>();
 
-            Assert.Throws(typeof(QueueUnderflowException), () => queue.Dequeue(), "Dequeue on empty queue should throw exception");
+            _ = Assert.Throws(typeof(QueueUnderflowException), () => queue.Dequeue(), "Dequeue on empty queue should throw exception");
         }
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace DataStructuresTest.Queues
         [Test]
         public void DequeueLastOnNonEmptyQueueShouldReturnLastElementAndDecreaseCountByOne()
         {
-            var queue = new Dequeue<int>();
+            Dequeue<int> queue = new Dequeue<int>();
             queue.Enqueue(17);
             queue.Enqueue(42);
             Assert.AreEqual(2, queue.Count, "Count should be 2 after enqueue");
@@ -71,9 +71,9 @@ namespace DataStructuresTest.Queues
         [Test]
         public void PeekLastOnEmptyQueueShouldThrowException()
         {
-            var queue = new Dequeue<int>();
+            Dequeue<int> queue = new Dequeue<int>();
 
-            Assert.Throws(typeof(QueueUnderflowException), () => queue.PeekLast(), "Peek on empty queue should throw exception");
+            _ = Assert.Throws(typeof(QueueUnderflowException), () => queue.PeekLast(), "Peek on empty queue should throw exception");
         }
 
         /// <summary>
@@ -82,7 +82,7 @@ namespace DataStructuresTest.Queues
         [Test]
         public void PeekLastOnNonEmptyQueueShouldReturnLastElementButNotChangeQueue()
         {
-            var queue = new Dequeue<int>();
+            Dequeue<int> queue = new Dequeue<int>();
 
             queue.Enqueue(17);
             int value = queue.PeekLast();

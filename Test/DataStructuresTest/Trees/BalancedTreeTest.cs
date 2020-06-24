@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataStructures.Trees;
+﻿using DataStructures.Trees;
 using NUnit.Framework;
 
 namespace DataStructuresTest.Trees
@@ -22,7 +17,7 @@ namespace DataStructuresTest.Trees
         [Test]
         public void AddToEmptyBalancedTreeShouldHaveSpecificProperties()
         {
-            var tree = new BalancedTree<int>();
+            BalancedTree<int> tree = new BalancedTree<int>();
             tree.Add(42);
 
             Assert.IsFalse(tree.IsEmpty, "Tree is not empty");
@@ -38,7 +33,7 @@ namespace DataStructuresTest.Trees
         [Test]
         public void AddingSeveralValuesToBalancedTreeShouldMaintainBalance()
         {
-            var tree = new BalancedTree<int>();
+            BalancedTree<int> tree = new BalancedTree<int>();
             tree.Add(42);
 
             // tree should now look like this:
@@ -104,9 +99,9 @@ namespace DataStructuresTest.Trees
         [Test]
         public void RemovingFromAnEmptyBalancedTreeShouldThrowException()
         {
-            var tree = new BalancedTree<int>();
+            BalancedTree<int> tree = new BalancedTree<int>();
             Assert.IsTrue(tree.IsEmpty, "Tree is empty");
-            Assert.Throws(typeof(TreeUnderflowException), () => tree.Remove(42), "Removing from an empty tree should throw exception");
+            _ = Assert.Throws(typeof(TreeUnderflowException), () => tree.Remove(42), "Removing from an empty tree should throw exception");
         }
 
         /// <summary>
@@ -115,7 +110,7 @@ namespace DataStructuresTest.Trees
         [Test]
         public void RemovingAValueThatDoesNotExistShouldReturnFalse()
         {
-            var tree = new BalancedTree<int>();
+            BalancedTree<int> tree = new BalancedTree<int>();
             tree.Add(42);
 
             Assert.IsFalse(tree.IsEmpty, "Tree is not empty");
@@ -129,7 +124,7 @@ namespace DataStructuresTest.Trees
         [Test]
         public void RemovingAValueThatExistsShouldMaintainBalanceAndReturnTrue()
         {
-            var tree = new BalancedTree<int>();
+            BalancedTree<int> tree = new BalancedTree<int>();
             tree.Add(42);
 
             // remove the root node - should return true and make the tree empty

@@ -15,7 +15,7 @@ namespace DataStructuresTest.Trees
         [Test]
         public void IsLeafShouldReturnTrueWhenNodeHasNoChildren()
         {
-            var node = new TreeNode<int>(187);
+            TreeNode<int> node = new TreeNode<int>(187);
             Assert.IsTrue(node.IsLeaf, "Node has no child nodes");
         }
 
@@ -25,8 +25,8 @@ namespace DataStructuresTest.Trees
         [Test]
         public void IsLeafShouldReturnFalseWhenNodeHasChildren()
         {
-            var parent = new TreeNode<int>(187);
-            var child = new TreeNode<int>(parent, -2);
+            TreeNode<int> parent = new TreeNode<int>(187);
+            TreeNode<int> child = new TreeNode<int>(parent, -2);
             parent.Left = child;
 
             Assert.IsFalse(parent.IsLeaf, "Node has child node");

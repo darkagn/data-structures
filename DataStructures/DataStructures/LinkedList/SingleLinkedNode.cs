@@ -21,28 +21,16 @@ namespace DataStructures.LinkedList
         /// </summary>
         public SingleLinkedNode<T> Next
         {
-            get
-            {
-                return mNext;
-            }
+            get => mNext;
 
-            set
-            {
-                SetNext(value);
-            }
+            set => SetNext(value);
         }
 
         /// <summary>
         /// Returns true if the node is the last one in the list -- ReadOnly.
         /// A return value of false indicates that the node has child nodes.
         /// </summary>
-        public bool IsLast
-        {
-            get
-            {
-                return this.Next == null;
-            }
-        }
+        public bool IsLast => Next == null;
 
         /// <summary>
         /// Returns the last descendant node in the list.
@@ -50,14 +38,7 @@ namespace DataStructures.LinkedList
         /// <returns>The tail node in the list.</returns>
         public SingleLinkedNode<T> Last()
         {
-            if (IsLast)
-            {
-                return this;
-            }
-            else
-            {
-                return this.Next.Last();
-            }
+            return IsLast ? this : Next.Last();
         }
 
         /// <summary>
@@ -75,13 +56,15 @@ namespace DataStructures.LinkedList
         /// <returns>A string representation of the node and its child nodes.</returns>
         public override string ToString()
         {
-            List<string> output = new List<string>();
-            output.Add(base.ToString());
+            List<string> output = new List<string>
+            {
+                base.ToString()
+            };
 
-            if (!this.IsLast)
+            if (!IsLast)
             {
                 // recursive call to next value in the list
-                output.Add(this.Next.ToString());
+                output.Add(Next.ToString());
             }
 
             return string.Join(", ", output);
@@ -111,9 +94,12 @@ namespace DataStructures.LinkedList
         /// <returns>An instance of the node.</returns>
         public static SingleLinkedNode<T> Instance(T value, SingleLinkedNode<T> next)
         {
-            var node = new SingleLinkedNode<T>();
-            node.Value = value;
-            node.Next = next;
+            SingleLinkedNode<T> node = new SingleLinkedNode<T>
+            {
+                Value = value,
+                Next = next
+            };
+
             return node;
         }
 
@@ -134,7 +120,7 @@ namespace DataStructures.LinkedList
 
             for(int i = array.Length - 1; i >= 0; i--)
             {
-                next = SingleLinkedNode<T>.Instance(array[i], next);
+                next = Instance(array[i], next);
             }
 
             return next;
@@ -165,7 +151,7 @@ namespace DataStructures.LinkedList
         /// </summary>
         public override void Dispose()
         {
-            this.Next = null;
+            Next = null;
         }
     }
 }

@@ -60,13 +60,7 @@ namespace DataStructures.Trees
         /// <summary>
         /// Returns true if the node is a leaf of the tree -- ReadOnly.
         /// </summary>
-        public bool IsLeaf
-        {
-            get
-            {
-                return Left == null && Right == null;
-            }
-        }
+        public bool IsLeaf => Left == null && Right == null;
 
         /// <summary>
         /// Disposes of the instance.

@@ -16,7 +16,7 @@ namespace DataStructuresTest.Trees
         [Test]
         public void NewTreeShouldHaveSpecificProperties()
         {
-            var tree = new Tree<int>();
+            Tree<int> tree = new Tree<int>();
 
             Assert.IsNotNull(tree, "Tree has been constructed");
             Assert.IsTrue(tree.IsEmpty, "Tree is empty");
@@ -32,13 +32,13 @@ namespace DataStructuresTest.Trees
         [Test]
         public void NonEmptyTreeShouldHaveSizeAndHeightGreaterThanZero()
         {
-            var root = new TreeNode<int>(17);
-            var left = new TreeNode<int>(root, -2);
+            TreeNode<int> root = new TreeNode<int>(17);
+            TreeNode<int> left = new TreeNode<int>(root, -2);
             root.Left = left;
-            var right = new TreeNode<int>(root, 0);
+            TreeNode<int> right = new TreeNode<int>(root, 0);
             root.Right = right;
 
-            var tree = new Tree<int>(root);
+            Tree<int> tree = new Tree<int>(root);
             Assert.IsFalse(tree.IsEmpty, "Tree is not empty");
             Assert.AreEqual(3, tree.Size(), "Tree should have three nodes");
             Assert.AreEqual(1, tree.Height(), "Tree should have height of 1");
@@ -51,7 +51,7 @@ namespace DataStructuresTest.Trees
         [Test]
         public void SearchOnEmptyTreeShouldReturnNull()
         {
-            var tree = new Tree<int>();
+            Tree<int> tree = new Tree<int>();
 
             Assert.IsNull(tree.Search(189), "DFSearch on empty tree");
             Assert.IsNull(tree.Search(189, false), "BFSearch on empty tree");
@@ -63,12 +63,12 @@ namespace DataStructuresTest.Trees
         [Test]
         public void SearchForMissingValueShouldReturnNull()
         {
-            var root = new TreeNode<int>(17);
-            var left = new TreeNode<int>(root, -2);
+            TreeNode<int> root = new TreeNode<int>(17);
+            TreeNode<int> left = new TreeNode<int>(root, -2);
             root.Left = left;
-            var right = new TreeNode<int>(root, 0);
+            TreeNode<int> right = new TreeNode<int>(root, 0);
             root.Right = right;
-            var tree = new Tree<int>(root);
+            Tree<int> tree = new Tree<int>(root);
 
             Assert.IsNull(tree.Search(189), "DFSearch for missing element");
             Assert.IsNull(tree.Search(189, false), "BFSearch for missing element");
@@ -81,14 +81,14 @@ namespace DataStructuresTest.Trees
         [Test]
         public void SearchForCorrectValueShouldNotReturnNull()
         {
-            var root = new TreeNode<int>(17);
-            var left = new TreeNode<int>(root, -2);
+            TreeNode<int> root = new TreeNode<int>(17);
+            TreeNode<int> left = new TreeNode<int>(root, -2);
             root.Left = left;
-            var right = new TreeNode<int>(root, 0);
+            TreeNode<int> right = new TreeNode<int>(root, 0);
             root.Right = right;
-            var tree = new Tree<int>(root);
+            Tree<int> tree = new Tree<int>(root);
 
-            var found = tree.Search(right.Value);
+            TreeNode<int> found = tree.Search(right.Value);
             Assert.IsNotNull(found, "DFS should have found value");
             Assert.AreEqual(right.Value, found.Value, "DFS Value");
 

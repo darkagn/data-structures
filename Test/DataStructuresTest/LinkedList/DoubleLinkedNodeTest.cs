@@ -5,7 +5,7 @@ using NUnit.Framework;
 namespace DataStructuresTest.LinkedList
 {
     /// <summary>
-    /// Unit test fixture for the <see cref="DataStructures.LinkedList.DoubleLinkedNode{T}"/> class.
+    /// Unit test fixture for the <see cref="DoubleLinkedNode{T}"/> class.
     /// </summary>
     [TestFixture]
     public class DoubleLinkedNodeTest
@@ -18,7 +18,7 @@ namespace DataStructuresTest.LinkedList
         public void CreateFromNullArrayShouldThrowException()
         {
             int[] array = null;
-            Assert.Throws(typeof(ArgumentNullException), () => DoubleLinkedNode<int>.CreateFromArray(array), "Expected to throw System.ArgumentNullException");
+            _ = Assert.Throws(typeof(ArgumentNullException), () => DoubleLinkedNode<int>.CreateFromArray(array), "Expected to throw System.ArgumentNullException");
         }
 
         /// <summary>
@@ -28,8 +28,8 @@ namespace DataStructuresTest.LinkedList
         [Test]
         public void CreateFromZeroLengthArrayShouldReturnNull()
         {
-            var array = new int[0];
-            var actual = DoubleLinkedNode<int>.CreateFromArray(array);
+            int[] array = new int[0];
+            DoubleLinkedNode<int> actual = DoubleLinkedNode<int>.CreateFromArray(array);
             Assert.IsNull(actual, "actual should be null since length of array is 0");
         }
 
@@ -41,7 +41,7 @@ namespace DataStructuresTest.LinkedList
         public void CreateFromArrayShouldResultInHeaderLengthEqualToArrayLength()
         {
             int[] array = new int[] { 5, 12, 15, -61, 0 };
-            var actual = SingleLinkedNode<int>.CreateFromArray(array);
+            SingleLinkedNode<int> actual = SingleLinkedNode<int>.CreateFromArray(array);
             Assert.AreEqual(array.Length, DoubleLinkedNode<int>.Length(actual), "Length");
         }
 
@@ -80,14 +80,14 @@ namespace DataStructuresTest.LinkedList
             Assert.DoesNotThrow(() => DoubleLinkedNode<int>.Instance(0, null, null),
                 "Passing null as next or previous should be fine - indicates first item being added to the list");
 
-            var node = DoubleLinkedNode<int>.Instance(0, null, null);
-            var nextNode = DoubleLinkedNode<int>.Instance(1, node, null);
+            DoubleLinkedNode<int> node = DoubleLinkedNode<int>.Instance(0, null, null);
+            DoubleLinkedNode<int> nextNode = DoubleLinkedNode<int>.Instance(1, node, null);
             node.Next = nextNode;
-            var lastNode = DoubleLinkedNode<int>.Instance(2, nextNode, null);
+            DoubleLinkedNode<int> lastNode = DoubleLinkedNode<int>.Instance(2, nextNode, null);
             nextNode.Next = lastNode;
 
-            var invalidNode = SingleLinkedNode<int>.Instance(-1, node);
-            Assert.Throws(typeof(ArgumentException), () => { node.Next = invalidNode; }, "Should throw an exception due to invalid type of node");
+            SingleLinkedNode<int> invalidNode = SingleLinkedNode<int>.Instance(-1, node);
+            _ = Assert.Throws(typeof(ArgumentException), () => { node.Next = invalidNode; }, "Should throw an exception due to invalid type of node");
         }
 
         /// <summary>
@@ -97,7 +97,7 @@ namespace DataStructuresTest.LinkedList
         public void CreateFromArrayShouldMaintainPreviousAndNextLinks()
         {
             int[] array = new int[] { 5, 12, 15, -61, 0 };
-            var actual = DoubleLinkedNode<int>.CreateFromArray(array);
+            DoubleLinkedNode<int> actual = DoubleLinkedNode<int>.CreateFromArray(array);
 
             Assert.AreEqual(5, actual.Value, "Value");
             Assert.AreEqual(12, actual.Next.Value, "Next Value");
@@ -146,8 +146,8 @@ namespace DataStructuresTest.LinkedList
         public void HeadShouldReturnFirstNode()
         {
             int[] array = new int[] { 12, 15, -61, 0, 5 };
-            var actual = DoubleLinkedNode<int>.CreateFromArray(array);
-            var first = actual.Head();
+            DoubleLinkedNode<int> actual = DoubleLinkedNode<int>.CreateFromArray(array);
+            DoubleLinkedNode<int> first = actual.Head();
             Assert.IsNotNull(first, "Head should not be null");
             Assert.IsTrue(first.IsHeader, "IsHeader should be true for last node");
             Assert.AreEqual(12, first.Value, "Value should be equal to first array value");

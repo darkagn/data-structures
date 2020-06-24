@@ -5,7 +5,7 @@ using NUnit.Framework;
 namespace DataStructuresTest.LinkedList
 {
     /// <summary>
-    /// Unit test fixture for the <see cref="DataStructures.LinkedList.SingleLinkedNode{T}"/> class.
+    /// Unit test fixture for the <see cref="SingleLinkedNode{T}"/> class.
     /// </summary>
     [TestFixture]
     public class SingleLinkedNodeTest
@@ -18,7 +18,7 @@ namespace DataStructuresTest.LinkedList
         public void CreateFromNullArrayShouldThrowException()
         {
             int[] array = null;
-            Assert.Throws(typeof(ArgumentNullException), () => SingleLinkedNode<int>.CreateFromArray(array),
+            _ = Assert.Throws(typeof(ArgumentNullException), () => SingleLinkedNode<int>.CreateFromArray(array),
                 "Expected to throw System.ArgumentNullException");
         }
 
@@ -29,8 +29,8 @@ namespace DataStructuresTest.LinkedList
         [Test]
         public void CreateFromZeroLengthArrayShouldReturnNull()
         {
-            var array = new int[0];
-            var actual = SingleLinkedNode<int>.CreateFromArray(array);
+            int[] array = new int[0];
+            SingleLinkedNode<int> actual = SingleLinkedNode<int>.CreateFromArray(array);
             Assert.IsNull(actual, "actual should be null since length of array is 0");
         }
 
@@ -42,7 +42,7 @@ namespace DataStructuresTest.LinkedList
         public void CreateFromArrayShouldResultInHeaderLengthEqualToArrayLength()
         {
             int[] array = new int[] { 5, 12, 15, -61, 0 };
-            var actual = SingleLinkedNode<int>.CreateFromArray(array);
+            SingleLinkedNode<int> actual = SingleLinkedNode<int>.CreateFromArray(array);
             Assert.AreEqual(array.Length, SingleLinkedNode<int>.Length(actual), "Length");
         }
 
@@ -79,7 +79,7 @@ namespace DataStructuresTest.LinkedList
         public void ToStringShouldPrintValuesInOrder()
         {
             int[] array = new int[] { 5, 12, 15, -61, 0 };
-            var actual = SingleLinkedNode<int>.CreateFromArray(array);
+            SingleLinkedNode<int> actual = SingleLinkedNode<int>.CreateFromArray(array);
             string toString = actual.ToString();
             Assert.IsNotNull(toString, "Should not be null string");
             Assert.IsNotEmpty(toString, "Should not be empty string");
@@ -93,8 +93,8 @@ namespace DataStructuresTest.LinkedList
         public void LastShouldReturnFinalNode()
         {
             int[] array = new int[] { 12, 15, -61, 0, 5 };
-            var actual = SingleLinkedNode<int>.CreateFromArray(array);
-            var last = actual.Last();
+            SingleLinkedNode<int> actual = SingleLinkedNode<int>.CreateFromArray(array);
+            SingleLinkedNode<int> last = actual.Last();
             Assert.IsNotNull(last, "Last should not be null");
             Assert.IsTrue(last.IsLast, "IsLast should be true for last node");
             Assert.AreEqual(5, last.Value, "Value should be equal to final array value");
@@ -107,7 +107,7 @@ namespace DataStructuresTest.LinkedList
         public void SearchShouldReturnNullWhenNotFound()
         {
             int[] array = new int[] { 12, 15, -61, 0, 5 };
-            var actual = SingleLinkedNode<int>.CreateFromArray(array);
+            SingleLinkedNode<int> actual = SingleLinkedNode<int>.CreateFromArray(array);
             Assert.IsNull(actual.Search(38129), "Should return null");
         }
 
@@ -118,8 +118,8 @@ namespace DataStructuresTest.LinkedList
         public void SearchShouldReturnNodeWhenValueFound()
         {
             int[] array = new int[] { 12, 15, -61, 0, 5 };
-            var actual = SingleLinkedNode<int>.CreateFromArray(array);
-            var result = actual.Search(15);
+            SingleLinkedNode<int> actual = SingleLinkedNode<int>.CreateFromArray(array);
+            SingleLinkedNode<int> result = actual.Search(15);
             Assert.IsNotNull(result, "Should not return null");
             Assert.AreEqual(15, result.Value, "Value");
             Assert.AreEqual(-61, result.Next.Value, "Next value");

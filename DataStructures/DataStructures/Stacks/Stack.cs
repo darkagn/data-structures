@@ -14,31 +14,14 @@ namespace DataStructures.Stacks
         private SingleLinkedNode<T> mInnerList = null;
 
         /// <summary>
-        /// Current size of the stack.
-        /// </summary>
-        private int mCount = 0;
-
-        /// <summary>
         /// Returns the current size of the stack -- ReadOnly.
         /// </summary>
-        public int Count
-        {
-            get
-            {
-                return mCount;
-            }
-        }
+        public int Count { get; private set; } = 0;
 
         /// <summary>
         /// Returns true when the stack is empty -- ReadOnly.
         /// </summary>
-        public bool IsEmpty
-        {
-            get
-            {
-                return mCount == 0;
-            }
-        }
+        public bool IsEmpty => Count == 0;
 
         /// <summary>
         /// Pushes the supplied <paramref name="value"/> onto the top of the stack.
@@ -48,7 +31,7 @@ namespace DataStructures.Stacks
         public void Push(T value)
         {
             mInnerList = SingleLinkedNode<T>.Instance(value, mInnerList);
-            mCount++;
+            Count++;
         }
 
         /// <summary>
@@ -64,9 +47,9 @@ namespace DataStructures.Stacks
                 throw new StackUnderflowException("Cannot pop from an empty stack");
             }
 
-            var returnValue = mInnerList.Value;
+            T returnValue = mInnerList.Value;
             mInnerList = mInnerList.Next;
-            mCount--;
+            Count--;
 
             return returnValue;
         }

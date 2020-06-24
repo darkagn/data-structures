@@ -3,7 +3,7 @@
 namespace DataStructures.LinkedList
 {
     /// <summary>
-    /// Extension of the <see cref="DataStructures.LinkedList.SingleLinkedNode{T}"/> class that allows for two-way traversal of the resulting linked list.
+    /// Extension of the <see cref="SingleLinkedNode{T}"/> class that allows for two-way traversal of the resulting linked list.
     /// </summary>
     /// <typeparam name="T">Indicates the type of data being stored as the value of the node.</typeparam>
     public class DoubleLinkedNode<T> : SingleLinkedNode<T>, IDisposable
@@ -22,13 +22,7 @@ namespace DataStructures.LinkedList
         /// Returns true if the node is the first one in the list -- ReadOnly.
         /// A return value of false indicates that the node has ancestor nodes.
         /// </summary>
-        public bool IsHeader
-        {
-            get
-            {
-                return this.Previous == null;
-            }
-        }
+        public bool IsHeader => Previous == null;
 
         /// <summary>
         /// Returns the first ancestor node in the list.
@@ -36,14 +30,7 @@ namespace DataStructures.LinkedList
         /// <returns>The header node in the list.</returns>
         public DoubleLinkedNode<T> Head()
         {
-            if (IsHeader)
-            {
-                return this;
-            }
-            else
-            {
-                return this.Previous.Head();
-            }
+            return IsHeader ? this : Previous.Head();
         }
 
         /// <summary>
@@ -73,11 +60,12 @@ namespace DataStructures.LinkedList
         /// <returns>An instance of the node.</returns>
         public static DoubleLinkedNode<T> Instance(T value, DoubleLinkedNode<T> previous, DoubleLinkedNode<T> next)
         {
-            var node = new DoubleLinkedNode<T>();
-
-            node.Value = value;
-            node.Previous = previous;
-            node.Next = next;
+            DoubleLinkedNode<T> node = new DoubleLinkedNode<T>
+            {
+                Value = value,
+                Previous = previous,
+                Next = next
+            };
 
             return node;
         }
@@ -88,7 +76,7 @@ namespace DataStructures.LinkedList
         /// <param name="array">The array of values to be converted to a linked list.</param>
         /// <returns>A linked list of nodes representing the supplied <paramref name="array"/>.</returns>
         /// <exception cref="ArgumentNullException">Thrown when the supplied <paramref name="array"/> is <c>null</c>.</exception>
-        public new static DoubleLinkedNode<T> CreateFromArray(T[] array)
+        public static new DoubleLinkedNode<T> CreateFromArray(T[] array)
         {
             if (array == null)
             {
@@ -100,7 +88,7 @@ namespace DataStructures.LinkedList
 
             for (int i = 0; i < array.Length; i++)
             {
-                var node = DoubleLinkedNode<T>.Instance(array[i], previous, null);
+                DoubleLinkedNode<T> node = Instance(array[i], previous, null);
                 if (previous == null)
                 {
                     returnVal = node;
@@ -121,7 +109,7 @@ namespace DataStructures.LinkedList
         /// </summary>
         public override void Dispose()
         {
-            this.Previous = null;
+            Previous = null;
             base.Dispose();
         }
     }

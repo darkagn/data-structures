@@ -47,7 +47,7 @@
             }
             else
             {
-                if (Tree<T>.Size(parent.Left) > Tree<T>.Size(parent.Right))
+                if (Size(parent.Left) > Size(parent.Right))
                 {
                     AddChild(parent.Right, value);
                 }
@@ -74,7 +74,7 @@
                 throw new TreeUnderflowException("Cannot remove from an empty tree");
             }
 
-            var node = this.Search(value);
+            TreeNode<T> node = Search(value);
 
             if (node == null)
             {
@@ -91,7 +91,7 @@
         /// <param name="node">The node to be removed from the tree.</param>
         protected void RemoveNode(TreeNode<T> node)
         {
-            var parent = node.Parent;
+            TreeNode<T> parent = node.Parent;
 
             if (parent == null)
             {
@@ -134,7 +134,7 @@
                 {
                     // the node has two subtrees - left and right
                     // find the node to swap with the current node and replace it with the current node
-                    var swap = this.FindLeafNodeToSwap(node);
+                    TreeNode<T> swap = FindLeafNodeToSwap(node);
                     if (isLeft)
                     {
                         parent.Left = swap;
@@ -185,7 +185,7 @@
                 return node;
             }
 
-            bool isLeft = Tree<T>.Height(node.Left) > Tree<T>.Height(node.Right);
+            bool isLeft = Height(node.Left) > Height(node.Right);
 
             if (isLeft)
             {

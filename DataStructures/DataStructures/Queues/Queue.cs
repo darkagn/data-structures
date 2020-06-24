@@ -28,25 +28,13 @@ namespace DataStructures.Queues
         /// </summary>
         /// <remarks>This is an O(1) operation as it is being stored as a member variable rather than being calculated via
         /// the <see cref="SingleLinkedNode{T}.Length(SingleLinkedNode{T})"/> function which is O(n).</remarks>
-        public int Count
-        {
-            get
-            {
-                return mCount;
-            }
-        }
+        public int Count => mCount;
 
         /// <summary>
         /// Returns true if the queue is currently empty -- ReadOnly.
         /// </summary>
         /// <remarks>This is an O(1) operation since it is a simple check for the null internal list.</remarks>
-        public bool IsEmpty
-        {
-            get
-            {
-                return mInnerList == null;
-            }
-        }
+        public bool IsEmpty => mInnerList == null;
 
         /// <summary>
         /// Adds the supplied <paramref name="value"/> to the end of the queue.
@@ -55,7 +43,7 @@ namespace DataStructures.Queues
         /// <param name="value">The value to be added.</param>
         public void Enqueue(T value)
         {
-            var node = CreateNode(value);
+            SingleLinkedNode<T> node = CreateNode(value);
 
             if (IsEmpty)
             {
@@ -85,7 +73,7 @@ namespace DataStructures.Queues
                 throw new QueueUnderflowException("Cannot dequeue an empty queue");
             }
 
-            T returnValue = this.Peek();
+            T returnValue = Peek();
             mInnerList = mInnerList.Next;
 
             if (IsEmpty)

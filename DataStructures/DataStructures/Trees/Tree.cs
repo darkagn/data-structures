@@ -36,13 +36,7 @@ namespace DataStructures.Trees
         /// <summary>
         /// Returns true if the tree is empty -- ReadOnly.
         /// </summary>
-        public bool IsEmpty
-        {
-            get
-            {
-                return mRootNode == null;
-            }
-        }
+        public bool IsEmpty => mRootNode == null;
 
         /// <summary>
         /// Returns the size of the subtree where the supplied <paramref name="node"/> is the root.
@@ -51,14 +45,7 @@ namespace DataStructures.Trees
         /// <returns>The size of the subtree.</returns>
         protected static int Size(TreeNode<T> node)
         {
-            if (node == null)
-            {
-                return 0;
-            }
-            else
-            {
-                return Size(node.Left) + Size(node.Right) + 1;
-            }
+            return node == null ? 0 : Size(node.Left) + Size(node.Right) + 1;
         }
 
         /// <summary>
@@ -67,7 +54,7 @@ namespace DataStructures.Trees
         /// <returns>The size of the entire tree.</returns>
         public int Size()
         {
-            return Tree<T>.Size(this.mRootNode);
+            return Size(mRootNode);
         }
 
         /// <summary>
@@ -99,7 +86,7 @@ namespace DataStructures.Trees
         /// <returns>A string representation of the instance.</returns>
         public override string ToString()
         {
-            var output = new System.Collections.Generic.List<string>();
+            System.Collections.Generic.List<string> output = new System.Collections.Generic.List<string>();
 
             if (mRootNode != null)
             {
@@ -108,7 +95,7 @@ namespace DataStructures.Trees
 
                 while (stack.Count > 0)
                 {
-                    var node = stack.Pop();
+                    TreeNode<T> node = stack.Pop();
                     output.Add(node.ToString());
 
                     if (node.Right != null)
@@ -133,14 +120,7 @@ namespace DataStructures.Trees
         /// <returns>The height of the subtree.</returns>
         protected static int Height(TreeNode<T> node)
         {
-            if (node == null)
-            {
-                return -1;
-            }
-            else
-            {
-                return Math.Max(Tree<T>.Height(node.Left), Tree<T>.Height(node.Right)) + 1;
-            }
+            return node == null ? -1 : Math.Max(Height(node.Left), Height(node.Right)) + 1;
         }
 
         /// <summary>
@@ -149,7 +129,7 @@ namespace DataStructures.Trees
         /// <returns>The height of the instance.</returns>
         public int Height()
         {
-            return Tree<T>.Height(mRootNode);
+            return Height(mRootNode);
         }
 
         /// <summary>
@@ -161,14 +141,7 @@ namespace DataStructures.Trees
         /// <returns>The node with the supplied <paramref name="value"/>, if found; <c>null</c> otherwise.</returns>
         public TreeNode<T> Search(T value, bool depthFirstSearch = true)
         {
-            if (depthFirstSearch)
-            {
-                return this.DepthFirstSearch(value);
-            }
-            else
-            {
-                return this.BreadthFirstSearch(value);
-            }
+            return depthFirstSearch ? DepthFirstSearch(value) : BreadthFirstSearch(value);
         }
 
         /// <summary>
@@ -185,7 +158,7 @@ namespace DataStructures.Trees
 
                 while (stack.Count > 0)
                 {
-                    var node = stack.Pop();
+                    TreeNode<T> node = stack.Pop();
                     if (node.Value.Equals(value))
                     {
                         return node;
@@ -220,7 +193,7 @@ namespace DataStructures.Trees
 
                 while (queue.Count > 0)
                 {
-                    var node = queue.Dequeue();
+                    TreeNode<T> node = queue.Dequeue();
                     if (node.Value.Equals(value))
                     {
                         return node;

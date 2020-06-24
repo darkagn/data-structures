@@ -17,7 +17,7 @@ namespace DataStructures.Queues
         /// <param name="value">The item to be added.</param>
         public void EnqueueFirst(T value)
         {
-            var node = CreateNode(value);
+            SingleLinkedNode<T> node = CreateNode(value);
             node.Next = mInnerList;
 
             if (IsEmpty)
@@ -46,11 +46,11 @@ namespace DataStructures.Queues
                 throw new QueueUnderflowException("Cannot dequeue an empty queue");
             }
 
-            T returnValue = this.PeekLast();
+            T returnValue = PeekLast();
 
             if (mLast.GetType() == typeof(DoubleLinkedNode<T>))
             {
-                var last = (DoubleLinkedNode<T>)mLast;
+                DoubleLinkedNode<T> last = (DoubleLinkedNode<T>)mLast;
                 if (last.Previous != null)
                 {
                     last.Previous.Next = null;

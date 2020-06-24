@@ -30,26 +30,14 @@ namespace DataStructures.LinkedList
         /// <see cref="DoubleLinkedNode{T}.Length(DoubleLinkedNode{T})"/>
         /// function which is O(n).
         /// </remarks>
-        public int Count
-        {
-            get
-            {
-                return mCount;
-            }
-        }
+        public int Count => mCount;
 
         /// <summary>
         /// Returns true if the list is currently empty -- ReadOnly.
         /// </summary>
         /// <remarks>This is an O(1) operation since it is a simple check for
         /// the null internal list.</remarks>
-        public bool IsEmpty
-        {
-            get
-            {
-                return mInnerList == null;
-            }
-        }
+        public bool IsEmpty => mInnerList == null;
 
         /// <summary>
         /// Adds the value to the list, maintaining order.
@@ -60,8 +48,8 @@ namespace DataStructures.LinkedList
         /// <param name="value">The value to be added to the list.</param>
         public void Add(T value)
         {
-            var newNode = CreateNode(value);
-            var node = mInnerList;
+            DoubleLinkedNode<T> newNode = CreateNode(value);
+            DoubleLinkedNode<T> node = mInnerList;
 
             while (node != null && value.CompareTo(node.Value) < 1)
             {
@@ -92,7 +80,7 @@ namespace DataStructures.LinkedList
         /// <returns>True if the value is removed; false otherwise.</returns>
         public bool Remove(T value)
         {
-            var node = Search(value);
+            DoubleLinkedNode<T> node = Search(value);
 
             if (node == null)
             {
@@ -104,7 +92,7 @@ namespace DataStructures.LinkedList
                 mInnerList = null;
             }
 
-            var tempNode = node.Previous;
+            DoubleLinkedNode<T> tempNode = node.Previous;
 
             if (node.Previous != null)
             {
@@ -131,19 +119,14 @@ namespace DataStructures.LinkedList
         /// otherwise.</returns>
         public DoubleLinkedNode<T> Search(T value)
         {
-            var node = mInnerList;
+            DoubleLinkedNode<T> node = mInnerList;
 
             while (node != null && value.CompareTo(node.Value) < 0)
             {
                 node = (DoubleLinkedNode<T>)node.Next;
             }
 
-            if (node != null && value.CompareTo(node.Value) == 0)
-            {
-                return node;
-            }
-
-            return null;
+            return node != null && value.CompareTo(node.Value) == 0 ? node : null;
         }
 
         /// <summary>
