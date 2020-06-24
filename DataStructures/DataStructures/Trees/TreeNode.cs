@@ -23,9 +23,9 @@ namespace DataStructures.Trees
         /// <param name="parent">The parent of the new node.</param>
         /// <param name="value">The value being stored.</param>
         public TreeNode(TreeNode<T> parent, T value)
+            : base(value)
         {
             Parent = parent;
-            Value = value;
             Left = null;
             Right = null;
         }

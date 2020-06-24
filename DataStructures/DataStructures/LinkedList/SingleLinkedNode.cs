@@ -16,6 +16,26 @@ namespace DataStructures.LinkedList
         protected SingleLinkedNode<T> mNext;
 
         /// <summary>
+        /// Base constructor.
+        /// </summary>
+        /// <param name="value">Value being represented by this node.</param>
+        protected SingleLinkedNode(T value)
+            : this(value, null)
+        {
+        }
+
+        /// <summary>
+        /// Constructor specifying link to next node in the list.
+        /// </summary>
+        /// <param name="value">Value being represented by this node.</param>
+        /// <param name="next">The next node.</param>
+        protected SingleLinkedNode(T value, SingleLinkedNode<T> next)
+            : base(value)
+        {
+            SetNext(next);
+        }
+
+        /// <summary>
         /// A pointer to the next node in the list.
         /// If this value is <c>null</c>, this indicates that the node is the last one in the list.
         /// </summary>
@@ -94,13 +114,7 @@ namespace DataStructures.LinkedList
         /// <returns>An instance of the node.</returns>
         public static SingleLinkedNode<T> Instance(T value, SingleLinkedNode<T> next)
         {
-            SingleLinkedNode<T> node = new SingleLinkedNode<T>
-            {
-                Value = value,
-                Next = next
-            };
-
-            return node;
+            return new SingleLinkedNode<T>(value, next);
         }
 
         /// <summary>
