@@ -61,6 +61,26 @@ namespace DataStructures.Matrix
         }
 
         /// <summary>
+        /// The width of the matrix; a pseudonym for <see cref="Columns"/>
+        /// -- ReadOnly.
+        /// </summary>
+        /// <seealso cref="Columns"/>.
+        public int Width
+        {
+            get => Columns;
+        }
+
+        /// <summary>
+        /// The height of the matrix; a pseudonym for <see cref="Rows"/>
+        /// -- ReadOnly.
+        /// </summary>
+        /// <seealso cref="Rows"/>.
+        public int Height
+        {
+            get => Rows;
+        }
+
+        /// <summary>
         /// Index operator via <paramref name="row"/>, <paramref name="column"/>
         /// index of the matrix. Each index is 0-based, and can range up to
         /// <see cref="Rows"/> - 1 and <see cref="Columns"/> - 1.
@@ -196,7 +216,7 @@ namespace DataStructures.Matrix
         /// of [0, 0]. The bottom-right cell is defined as having row, column
         /// index [Rows - 1, Columns - 1]. Therefore, the appropriate ranges
         /// for the <paramref name="row"/>, <paramref name="column"/> index are
-        /// [0, Rows - 1] and [0, Columns - 1].
+        /// [0, Height - 1] and [0, Width - 1].
         /// </summary>
         /// <param name="row">Row index being retrieved.</param>
         /// <param name="column">Column index being retrieved.</param>
@@ -206,26 +226,26 @@ namespace DataStructures.Matrix
         /// </returns>
         /// <exception cref="ArgumentOutOfRangeException">
         /// Thrown if the <paramref name="row"/> or <paramref name="column"/>
-        /// argument are not in the range [0, Rows - 1] or [0, Columns - 1]
+        /// argument are not in the range [0, Height - 1] or [0, Width - 1]
         /// respectively.
         /// </exception>
-        /// <seealso cref="Rows"/>
-        /// <seealso cref="Columns"/>
+        /// <seealso cref="Height"/>
+        /// <seealso cref="Width"/>
         private void VerifyIndex(int row, int column)
         {
-            if (row < 0 || row > Rows - 1)
+            if (row < 0 || row > Height - 1)
             {
                 throw new ArgumentOutOfRangeException(
                     "row",
-                    "Must be between 0 and " + (Rows - 1).ToString()
+                    "Must be between 0 and " + (Height - 1).ToString()
                 );
             }
 
-            if (column < 0 || column > Columns - 1)
+            if (column < 0 || column > Width - 1)
             {
                 throw new ArgumentOutOfRangeException(
                     "column",
-                    "Must be between 0 and " + (Columns - 1).ToString()
+                    "Must be between 0 and " + (Width - 1).ToString()
                 );
             }
         }
@@ -245,7 +265,7 @@ namespace DataStructures.Matrix
         {
             VerifyIndex(row, column);
 
-            return row * Columns + column;
+            return row * Width + column;
         }
 
         /// <summary>
