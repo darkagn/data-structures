@@ -56,6 +56,8 @@
     <Compile Include="Trees\TreeNodeTest.cs" />
     <Compile Include="Trees\TreeTest.cs" />
     <Compile Include="LinkedList\SortedLinkedListTest.cs" />
+    <Compile Include="Matrix\MatrixNodeTest.cs" />
+    <Compile Include="Matrix\MatrixTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\DataStructures\DataStructures\DataStructures.csproj">
@@ -69,6 +71,9 @@
   <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Matrix\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

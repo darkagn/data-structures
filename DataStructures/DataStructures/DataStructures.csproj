@@ -56,10 +56,13 @@
     <Compile Include="LinkedList\UnderflowException.cs" />
     <Compile Include="Node\BaseNode.cs" />
     <Compile Include="LinkedList\SortedLinkedList.cs" />
+    <Compile Include="Matrix\Matrix.cs" />
+    <Compile Include="Matrix\MatrixNode.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
     <Folder Include="Node\" />
+    <Folder Include="Matrix\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

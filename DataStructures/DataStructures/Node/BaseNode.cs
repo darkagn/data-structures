@@ -13,18 +13,18 @@ namespace DataStructures.Node
         /// Base constructor.
         /// </summary>
         /// <param name="value">Value being represented by this node.</param>
-        public BaseNode(T value)
+        protected BaseNode(T value)
         {
             Value = value;
         }
 
         /// <summary>
-        /// The value of this node.
+        /// The value of this node -- ReadOnly.
         /// </summary>
         public T Value
         {
             get;
-            set;
+            private set;
         }
 
         /// <summary>
