@@ -27,7 +27,7 @@ namespace DataStructuresTest.Matrix
             Assert.IsNotNull(foundNode);
             Assert.AreEqual(2, foundNode.Row);
             Assert.AreEqual(2, foundNode.Column);
-            Assert.AreEqual(8, foundNode.Value);
+            Assert.AreEqual(10, foundNode.Value);
         }
 
         /// <summary>
@@ -83,7 +83,7 @@ namespace DataStructuresTest.Matrix
             {
                 for (int j = 0; j < columns; j++)
                 {
-                    int expectedValue = i * (columns - 1) + j;
+                    int expectedValue = i * columns + j;
                     int actualValue = matrix.GetValue(i, j);
 
                     Assert.AreEqual(expectedValue, actualValue);
@@ -202,6 +202,23 @@ namespace DataStructuresTest.Matrix
         }
 
         /// <summary>
+        /// Tests the output of <see cref="Matrix{T}.ToString"/> method.
+        /// </summary>
+        [Test]
+        public void ToStringContainsTabsAndNewLines()
+        {
+            int rows = 4;
+            int columns = 4;
+
+            Matrix<int> matrix = GetTestMatrix(rows, columns);
+
+            string expectedOutput =
+                "0\t1\t2\t3\r\n4\t5\t6\t7\r\n8\t9\t10\t11\r\n12\t13\t14\t15";
+
+            Assert.AreEqual(expectedOutput, matrix.ToString());
+        }
+
+        /// <summary>
         /// Builds a matrix with the supplied dimensions for testing.
         /// </summary>
         /// <param name="rows">Number of rows for the matrix.</param>
@@ -216,7 +233,7 @@ namespace DataStructuresTest.Matrix
             {
                 for (int j = 0; j < columns; j++)
                 {
-                    matrix[i, j] = i * (columns - 1) + j;
+                    matrix[i, j] = i * columns + j;
                 }
             }
 

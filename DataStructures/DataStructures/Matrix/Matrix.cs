@@ -182,7 +182,7 @@ namespace DataStructures.Matrix
 
                 if (node.Column == Columns - 1)
                 {
-                    output.Add(String.Join(",", line));
+                    output.Add(String.Join("\t", line));
                 }
             }
 
@@ -245,7 +245,7 @@ namespace DataStructures.Matrix
         {
             VerifyIndex(row, column);
 
-            return row * (Columns - 1) + column;
+            return row * Columns + column;
         }
 
         /// <summary>
