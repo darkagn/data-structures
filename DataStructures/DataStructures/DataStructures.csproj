@@ -58,6 +58,7 @@
     <Compile Include="LinkedList\SortedLinkedList.cs" />
     <Compile Include="Matrix\Matrix.cs" />
     <Compile Include="Matrix\MatrixNode.cs" />
+    <Compile Include="Matrix\MatrixOperationException.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

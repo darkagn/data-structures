@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq.Expressions;
 using DataStructures.Node;
 
 namespace DataStructures.Matrix
@@ -7,8 +8,36 @@ namespace DataStructures.Matrix
     /// Represents a node, or cell, in a matrix.
     /// </summary>
     /// <typeparam name="T">Indicates the type of data being stored as the value of the node.</typeparam>
-    public class MatrixNode<T> : BaseNode<T>, IComparable<MatrixNode<T>>
+    public class MatrixNode<T> : BaseNode<T>, IComparable<MatrixNode<T>> where T : unmanaged
     {
+        /// <summary>
+        /// Delegate for the addition operator.
+        /// </summary>
+        private static readonly Func<T, T, T> addMethod;
+
+        /// <summary>
+        /// Delegate for the subtract operator.
+        /// </summary>
+        private static readonly Func<T, T, T> subtractMethod;
+
+        /// <summary>
+        /// Static constructor.
+        /// </summary>
+        static MatrixNode()
+        {
+            try
+            {
+                ParameterExpression left = Expression.Parameter(typeof(T), "left");
+                ParameterExpression right = Expression.Parameter(typeof(T), "right");
+                addMethod = Expression.Lambda<Func<T, T, T>>(Expression.Add(left, right), left, right).Compile();
+                subtractMethod = Expression.Lambda<Func<T, T, T>>(Expression.Subtract(left, right), left, right).Compile();
+            }
+            catch (InvalidOperationException)
+            {
+                //Eat the exception, no + operator defined :(
+            }
+        }
+
         /// <summary>
         /// Constructor which specifies the <paramref name="row"/>, <paramref name="column"/> index for the cell.
         /// The supplied <paramref name="value"/> is stored in the cell and is immutable.
@@ -100,6 +129,68 @@ namespace DataStructures.Matrix
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// Adds a node to another, if permitted.
+        /// </summary>
+        /// <param name="leftOperand">The left operand of the operation.</param>
+        /// <param name="rightOperand">The right operand of the operation.</param>
+        /// <returns>A new instance indicating the new node value.</returns>
+        /// <exception cref="MatrixOperationException">
+        /// Thrown if the row and column of each operand are not equivalent, or
+        /// if <typeparamref name="T"/> does not allow the + operator.
+        /// </exception>
+        public static MatrixNode<T> operator +(MatrixNode<T> leftOperand, MatrixNode<T> rightOperand)
+        {
+            VerifyRowColumnForOperators(leftOperand, rightOperand);
+
+            if (addMethod == null)
+            {
+                throw new MatrixOperationException("operator", "+ does not exist for the type T: ");
+            }
+
+            return MatrixNode<T>.Instance(addMethod(leftOperand.Value, rightOperand.Value), leftOperand.Row, leftOperand.Column);
+        }
+
+        /// <summary>
+        /// Subtracts a node from another, if permitted.
+        /// </summary>
+        /// <param name="leftOperand">The left operand of the operation.</param>
+        /// <param name="rightOperand">The right operand of the operation.</param>
+        /// <returns>A new instance indicating the new node value.</returns>
+        /// <exception cref="MatrixOperationException">
+        /// Thrown if the row and column of each operand are not equivalent, or
+        /// if <typeparamref name="T"/> does not allow the + operator.
+        /// </exception>
+        public static MatrixNode<T> operator -(MatrixNode<T> leftOperand, MatrixNode<T> rightOperand)
+        {
+            VerifyRowColumnForOperators(leftOperand, rightOperand);
+
+            if (subtractMethod == null)
+            {
+                throw new MatrixOperationException("operator", "+ does not exist for the type T: ");
+            }
+
+            return MatrixNode<T>.Instance(subtractMethod(leftOperand.Value, rightOperand.Value), leftOperand.Row, leftOperand.Column);
+        }
+
+        /// <summary>
+        /// Verifies the operands are in the corresponding row, column index in their respective matrices.
+        /// </summary>
+        /// <param name="leftOperand">The left operand of the operation.</param>
+        /// <param name="rightOperand">The right operand of the operation.</param>
+        private static void VerifyRowColumnForOperators(MatrixNode<T> leftOperand, MatrixNode<T> rightOperand)
+        {
+            if (leftOperand.Row != rightOperand.Row)
+            {
+                throw new MatrixOperationException("Row", "Row of each operator must match");
+            }
+
+            if (leftOperand.Column != rightOperand.Column)
+            {
+                throw new MatrixOperationException("Column", "Column of each operator must match");
+            }
         }
     }
 }

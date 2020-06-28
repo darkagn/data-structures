@@ -8,7 +8,7 @@ namespace DataStructures.Matrix
     /// </summary>
     /// <typeparam name="T">Indicates the type of data being stored as the value
     /// of each item in the matrix.</typeparam>
-    public class Matrix<T> : IDisposable
+    public class Matrix<T> : IDisposable where T: unmanaged
     {
         /// <summary>
         /// Internal data structure to hold each cell.
@@ -207,6 +207,72 @@ namespace DataStructures.Matrix
             }
 
             return String.Join("\r\n", output);
+        }
+
+        /// <summary>
+        /// Adds a matrix to another matrix, if <typeparamref name="T"/> allows.
+        /// <see cref="Rows"/> and <see cref="Columns"/> must be equivalent as
+        /// per normal mathematical matrices.
+        /// </summary>
+        /// <param name="other">The other matrix to add to this instance.</param>
+        /// <returns>
+        /// The new matrix representing the addition of the two matrices.
+        /// </returns>
+        /// <exception cref="MatrixOperationException">
+        /// Thrown if the matrices are not compatible to be added together.
+        /// </exception>
+        public Matrix<T> Add(Matrix<T> other)
+        {
+            if (Rows != other.Rows || Columns != other.Columns)
+            {
+                throw new MatrixOperationException("other", "Matrix is not compatible to add to");
+            }
+
+            Matrix<T> matrix = new Matrix<T>(Rows, Columns);
+
+            for (int i = 0; i < Rows; i++)
+            {
+                for (int j = 0; j < Columns; j++)
+                {
+                    MatrixNode<T> newNode = this.Search(i, j) + other.Search(i, j);
+                    matrix[i, j] = newNode.Value;
+                }
+            }
+
+            return matrix;
+        }
+
+        /// <summary>
+        /// Subtracts a matrix from another matrix, if <typeparamref name="T"/> allows.
+        /// <see cref="Rows"/> and <see cref="Columns"/> must be equivalent as
+        /// per normal mathematical matrices.
+        /// </summary>
+        /// <param name="other">The other matrix to add to this instance.</param>
+        /// <returns>
+        /// The new matrix representing the addition of the two matrices.
+        /// </returns>
+        /// <exception cref="MatrixOperationException">
+        /// Thrown if the matrices are not compatible to be added together.
+        /// </exception>
+        public Matrix<T> Subtract(Matrix<T> other)
+        {
+            if (Rows != other.Rows || Columns != other.Columns)
+            {
+                throw new MatrixOperationException("other", "Matrix is not compatible to subtract from");
+            }
+
+            Matrix<T> matrix = new Matrix<T>(Rows, Columns);
+
+            for (int i = 0; i < Rows; i++)
+            {
+                for (int j = 0; j < Columns; j++)
+                {
+                    MatrixNode<T> newNode = this.Search(i, j) - other.Search(i, j);
+                    matrix[i, j] = newNode.Value;
+                }
+            }
+
+            return matrix;
         }
 
         /// <summary>

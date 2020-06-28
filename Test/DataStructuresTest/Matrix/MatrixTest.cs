@@ -219,6 +219,60 @@ namespace DataStructuresTest.Matrix
         }
 
         /// <summary>
+        /// Verifies that the <see cref="Matrix{T}.Add(Matrix{T})"/> method works
+        /// as expected when the matrices are compatible.
+        /// </summary>
+        [Test]
+        public void AddSetsValuesAccordingly()
+        {
+            int rows = 4;
+            int columns = 4;
+
+            Matrix<int> matrixLeft = GetTestMatrix(rows, columns);
+            Matrix<int> matrixRight = GetTestMatrix(rows, columns);
+
+            Matrix<int> matrix = matrixLeft.Add(matrixRight);
+
+            Assert.AreEqual(matrix.Rows, matrixLeft.Rows);
+            Assert.AreEqual(matrix.Columns, matrixLeft.Columns);
+
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < columns; j++)
+                {
+                    Assert.AreEqual(matrix[i, j], matrixLeft[i, j] + matrixRight[i, j]);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Verifies that the <see cref="Matrix{T}.Subtract(Matrix{T})"/> method works
+        /// as expected when the matrices are compatible.
+        /// </summary>
+        [Test]
+        public void SubtractSetsValuesAccordingly()
+        {
+            int rows = 4;
+            int columns = 4;
+
+            Matrix<int> matrixLeft = GetTestMatrix(rows, columns);
+            Matrix<int> matrixRight = GetTestMatrix(rows, columns);
+
+            Matrix<int> matrix = matrixLeft.Subtract(matrixRight);
+
+            Assert.AreEqual(matrix.Rows, matrixLeft.Rows);
+            Assert.AreEqual(matrix.Columns, matrixLeft.Columns);
+
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < columns; j++)
+                {
+                    Assert.AreEqual(matrix[i, j], matrixLeft[i, j] - matrixRight[i, j]);
+                }
+            }
+        }
+
+        /// <summary>
         /// Builds a matrix with the supplied dimensions for testing.
         /// </summary>
         /// <param name="rows">Number of rows for the matrix.</param>
